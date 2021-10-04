@@ -1,14 +1,14 @@
-package com.trading.gateway.binance;
+package com.trading.gateway.binance.market;
 
 import com.trading.gateway.utils.websocket.Printer;
 import com.trading.gateway.utils.websocket.SubscriptionClient;
 
-public class BinanceAggTrade {
+public class BinanceSymbolLiquidationOrder {
     public static void main(String[] args) {
 
         SubscriptionClient client = SubscriptionClient.create();
 
-        client.subscribeAggregateTradeEvent("btcusdt", Printer::logInfo, null);
+        client.subscribeSymbolLiquidationOrderEvent("btcusdt", Printer::logInfo, null);
 
     }
 }

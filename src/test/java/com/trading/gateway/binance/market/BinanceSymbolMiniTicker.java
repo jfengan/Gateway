@@ -1,14 +1,14 @@
-package com.trading.gateway.binance;
+package com.trading.gateway.binance.market;
 
 import com.trading.gateway.utils.websocket.Printer;
 import com.trading.gateway.utils.websocket.SubscriptionClient;
 
-public class BinanceMiniTicker {
+public class BinanceSymbolMiniTicker {
     public static void main(String[] args) {
 
         SubscriptionClient client = SubscriptionClient.create();
 
-        client.subscribeAllMiniTickerEvent(Printer::logInfo, null);
+        client.subscribeSymbolMiniTickerEvent("btcusdt", Printer::logInfo, null);
 
     }
 }

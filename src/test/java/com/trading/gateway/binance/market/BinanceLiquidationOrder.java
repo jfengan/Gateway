@@ -1,4 +1,4 @@
-package com.trading.gateway.binance;
+package com.trading.gateway.binance.market;
 
 import com.trading.gateway.utils.websocket.Printer;
 import com.trading.gateway.utils.websocket.SubscriptionClient;

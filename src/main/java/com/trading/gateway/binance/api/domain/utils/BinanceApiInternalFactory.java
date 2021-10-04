@@ -1,0 +1,44 @@
+package com.trading.gateway.binance.api.domain.utils;
+
+import com.trading.gateway.binance.api.domain.impl.RestApiRequestImpl;
+import com.trading.gateway.binance.api.domain.impl.SyncRequestImpl;
+import com.trading.gateway.binance.api.domain.impl.WebSocketStreamClientImpl;
+import com.trading.gateway.utils.websocket.RequestOptions;
+import com.trading.gateway.utils.websocket.SubscriptionClient;
+import com.trading.gateway.utils.websocket.SubscriptionOptions;
+import com.trading.gateway.utils.websocket.SyncRequestClient;
+
+import java.net.URI;
+
+public final class BinanceApiInternalFactory {
+
+    private static final BinanceApiInternalFactory instance = new BinanceApiInternalFactory();
+
+    public static BinanceApiInternalFactory getInstance() {
+        return instance;
+    }
+
+    private BinanceApiInternalFactory() {
+    }
+
+    public SyncRequestClient createSyncRequestClient(String apiKey, String secretKey, RequestOptions options) {
+        RequestOptions requestOptions = new RequestOptions(options);
+        RestApiRequestImpl requestImpl = new RestApiRequestImpl(apiKey, secretKey, requestOptions);
+        return new SyncRequestImpl(requestImpl);
+    }
+
+    public SubscriptionClient createSubscriptionClient(SubscriptionOptions options) {
+        SubscriptionOptions subscriptionOptions = new SubscriptionOptions(options);
+        RequestOptions requestOptions = new RequestOptions();
+        try {
+            String host = new URI(options.getUri()).getHost();
+            requestOptions.setUrl("https://" + host);
+        } catch (Exception e) {
+
+        }
+        SubscriptionClient webSocketStreamClient = new WebSocketStreamClientImpl(subscriptionOptions);
+        return webSocketStreamClient;
+    }
+
+}
+

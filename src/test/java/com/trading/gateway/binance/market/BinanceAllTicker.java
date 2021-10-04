@@ -1,14 +1,18 @@
-package com.trading.gateway.binance;
+package com.trading.gateway.binance.market;
 
 import com.trading.gateway.utils.websocket.Printer;
 import com.trading.gateway.utils.websocket.SubscriptionClient;
 
-public class BinanceSymbolLiquidationOrder {
+
+/*
+* return: a list of price snapshot for all tickers*/
+
+public class BinanceAllTicker {
     public static void main(String[] args) {
 
         SubscriptionClient client = SubscriptionClient.create();
 
-        client.subscribeSymbolLiquidationOrderEvent("btcusdt", Printer::logInfo, null);
+        client.subscribeAllTickerEvent(Printer::logInfo, null);
 
     }
 }

@@ -1,14 +1,14 @@
-package com.trading.gateway.binance;
+package com.trading.gateway.binance.market;
 
 import com.trading.gateway.utils.websocket.Printer;
 import com.trading.gateway.utils.websocket.SubscriptionClient;
 
-public class BinanceSymbolMiniTicker {
+public class BinanceDiffDepth {
     public static void main(String[] args) {
 
         SubscriptionClient client = SubscriptionClient.create();
 
-        client.subscribeSymbolMiniTickerEvent("btcusdt", Printer::logInfo, null);
+        client.subscribeDiffDepthEvent("btcusdt", Printer::logInfo, null);
 
     }
 }
